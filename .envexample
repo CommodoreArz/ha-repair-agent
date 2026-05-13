@@ -1,0 +1,17 @@
+# Home Assistant Configuration
+HA_URL=<HA_URL>
+HA_TOKEN=<HA_TOKEN>
+
+# Local LLM (LM Studio)
+LLM_BASE_URL=<LLM_BASE_URL_OPENAI_COMPATIBLE_REST_API>
+LLM_MODEL=<LLM_MODEL>
+
+# Agent Behavior
+MAX_REPAIR_ATTEMPTS=3
+USE_DYNAMIC_DOMAINS=false
+
+# Automation Config Storage
+AUTOMATIONS_DIR=/config/automations
+
+# Logging
+DEBUG_LOGGING=true
