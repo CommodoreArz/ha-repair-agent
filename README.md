@@ -6,6 +6,8 @@ validates it, and redeploys — all without human intervention.
 
 ## Architecture
 
+![Repair Workflow](repair_workflow.png)
+
 ```
 Supervisor (main.py)
 └── watches HA WebSocket for automation failures
@@ -28,11 +30,11 @@ Supervisor (main.py)
 pip install -r requirements.txt
 ```
 
-### 2. Start LM Studio with API enabled
-- Open LM Studio
-- Load your model
-- Start the local server (default: `http://localhost:8000`)
-- Ensure the API is running on the OpenAI-compatible endpoint
+### 2. Configure your LLM endpoint
+- Use any OpenAI-compatible REST API — local or cloud-hosted:
+  - **Local**: LM Studio, Ollama, vLLM, llama.cpp server, etc.
+  - **Cloud**: OpenAI, Azure OpenAI, Google Gemini (via OpenAI-compat), Groq, Together AI, etc.
+- Note the base URL and model name for your `.env`
 
 ### 3. Configure environment
 ```bash
@@ -51,8 +53,8 @@ python main.py
 |---------------------|--------------------------------|----------------------------------------|
 | `HA_URL`            | `http://homeassistant.local:8123` | Home Assistant base URL             |
 | `HA_TOKEN`          | *(required)*                   | Long-lived HA access token             |
-| `LLM_BASE_URL`      | `http://192.168.0.155:1234/v1` | LM Studio OpenAI-compatible API        |
-| `LLM_MODEL`         | `local-model`                  | Model name (local-model for LM Studio) |
+| `LLM_BASE_URL`      | *(required)*                   | OpenAI-compatible API base URL (local or cloud) |
+| `LLM_MODEL`         | *(required)*                   | Model identifier for your chosen endpoint       |
 | `MAX_REPAIR_ATTEMPTS` | `3`                          | Max self-correction loops per failure  |
 | `AUTOMATIONS_DIR`   | `/config/automations`          | Path to HA automation YAML files       |
 
